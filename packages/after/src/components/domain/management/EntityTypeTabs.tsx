@@ -46,7 +46,6 @@ export const EntityTypeTabs: React.FC<EntityTypeTabsProps> = ({
       {/* Before: padding: '8px 16px', marginRight: '5px', fontSize: '14px', fontWeight: 선택시 'bold' 아니면 'normal', border: '1px solid #999', background: 선택시 '#1976d2' 아니면 '#f5f5f5', color: 선택시 'white' 아니면 '#333', borderRadius: '3px' */}
       <Button
         id="tab-post"
-        role="tab"
         aria-selected={entityType === "post"}
         aria-controls="entity-content"
         tabIndex={entityType === "post" ? 0 : -1}
@@ -65,7 +64,6 @@ export const EntityTypeTabs: React.FC<EntityTypeTabsProps> = ({
       </Button>
       <Button
         id="tab-user"
-        role="tab"
         aria-selected={entityType === "user"}
         aria-controls="entity-content"
         tabIndex={entityType === "user" ? 0 : -1}
@@ -85,4 +83,3 @@ export const EntityTypeTabs: React.FC<EntityTypeTabsProps> = ({
     </div>
   );
 };
-
