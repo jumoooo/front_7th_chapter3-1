@@ -11,8 +11,8 @@ const dirname =
     : path.dirname(new URL(import.meta.url).pathname);
 
 // GitHub Pages 배포를 위한 base 경로 설정
-// 프로덕션 환경에서는 /3-1/ 경로로 배포
-const base: string = process.env.NODE_ENV === "production" ? "/3-1/" : "";
+// 저장소 이름이 URL에 포함되므로 루트 경로로 배포
+const base: string = process.env.NODE_ENV === "production" ? "/" : "";
 
 export default defineConfig(({ command }) => {
   // 빌드 모드에서는 test 설정 제외
