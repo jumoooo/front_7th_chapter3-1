@@ -7,7 +7,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../../ui/dialog";
-import { Button } from "../../ui/button";
 
 /**
  * EntityDialog Props

@@ -95,7 +95,8 @@ export const EntityTableContent: React.FC<EntityTableContentProps> = ({
     row: Entity,
     columnKey: string
   ): React.ReactNode => {
-    const value = (row as Record<string, unknown>)[columnKey];
+    // Entity 타입을 Record로 안전하게 변환하기 위해 이중 캐스팅 사용
+    const value = (row as unknown as Record<string, unknown>)[columnKey];
 
     if (entityType === "user") {
       if (columnKey === "role") {
@@ -122,8 +123,8 @@ export const EntityTableContent: React.FC<EntityTableContentProps> = ({
         return isString(value) ? value : "-";
       }
       if (columnKey === "actions") {
-        const rowId = isNumber((row as Record<string, unknown>).id)
-          ? (row as Record<string, unknown>).id as number
+        const rowId = isNumber((row as unknown as Record<string, unknown>).id)
+          ? (row as unknown as Record<string, unknown>).id as number
           : undefined;
         return (
           <div className="flex gap-2">
@@ -172,11 +173,11 @@ export const EntityTableContent: React.FC<EntityTableContentProps> = ({
         return "0";
       }
       if (columnKey === "actions") {
-        const rowId = isNumber((row as Record<string, unknown>).id)
-          ? (row as Record<string, unknown>).id as number
+        const rowId = isNumber((row as unknown as Record<string, unknown>).id)
+          ? (row as unknown as Record<string, unknown>).id as number
           : undefined;
-        const rowStatus = isString((row as Record<string, unknown>).status)
-          ? (row as Record<string, unknown>).status
+        const rowStatus = isString((row as unknown as Record<string, unknown>).status)
+          ? (row as unknown as Record<string, unknown>).status
           : "";
         return (
           <div className="flex gap-2 flex-wrap">

@@ -14,38 +14,28 @@ const dirname =
 // 프로덕션 환경에서는 /3-1/ 경로로 배포
 const base: string = process.env.NODE_ENV === "production" ? "/3-1/" : "";
 
-export default defineConfig({
-  base, // GitHub Pages 배포 경로 설정
-  plugins: [react(), tailwindcss()],
-  resolve: {
-    alias: {
-      "@": path.resolve(dirname, "./src"),
+export default defineConfig(({ command }) => {
+  // 빌드 모드에서는 test 설정 제외
+  const isBuild = command === "build";
+
+  return {
+    base, // GitHub Pages 배포 경로 설정
+    plugins: [react(), tailwindcss()],
+    resolve: {
+      alias: {
+        "@": path.resolve(dirname, "./src"),
+      },
     },
-  },
-  test: {
-    globals: true,
-    environment: "jsdom",
-    setupFiles: "./src/test/setup.ts",
-    css: true,
-    // Storybook 테스트는 별도로 실행하거나 필요시 활성화
-    // projects: [{
-    //   extends: true,
-    //   plugins: [
-    //   storybookTest({
-    //     configDir: path.join(dirname, '.storybook')
-    //   })],
-    //   test: {
-    //     name: 'storybook',
-    //     browser: {
-    //       enabled: true,
-    //       headless: true,
-    //       provider: playwright({}),
-    //       instances: [{
-    //         browser: 'chromium'
-    //       }]
-    //     },
-    //     setupFiles: ['.storybook/vitest.setup.ts']
-    //   }
-    // }]
-  },
+    // test 설정은 개발/테스트 환경에서만 사용
+    ...(isBuild
+      ? {}
+      : {
+          test: {
+            globals: true,
+            environment: "jsdom",
+            setupFiles: "./src/test/setup.ts",
+            css: true,
+          },
+        }),
+  };
 });

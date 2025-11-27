@@ -53,7 +53,6 @@ export const EntityFormField: React.FC<EntityFormFieldProps> = ({
   rows = 6,
 }) => {
   const fieldId = `field-${name}`;
-  const errorId = `error-${name}`;
 
   return (
     <div className="space-y-2">
