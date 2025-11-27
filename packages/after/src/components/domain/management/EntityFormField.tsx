@@ -80,18 +80,37 @@ export const EntityFormField: React.FC<EntityFormFieldProps> = ({
       )}
 
       {type === "select" && (
-        <Select value={value} onValueChange={onChange}>
-          <SelectTrigger id={fieldId} aria-required={required}>
-            <SelectValue placeholder={placeholder || "선택하세요"} />
-          </SelectTrigger>
-          <SelectContent>
+        <>
+          {/* 숨겨진 select 요소 (테스트 및 폼 제출용) */}
+          <select
+            name={name}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            className="sr-only"
+            aria-hidden="true"
+            tabIndex={-1}
+            required={required}
+          >
             {options.map((option) => (
-              <SelectItem key={option.value} value={option.value}>
+              <option key={option.value} value={option.value}>
                 {option.label}
-              </SelectItem>
+              </option>
             ))}
-          </SelectContent>
-        </Select>
+          </select>
+          {/* 시각적 Select (shadcn/ui) */}
+          <Select value={value} onValueChange={onChange}>
+            <SelectTrigger id={fieldId} aria-required={required}>
+              <SelectValue placeholder={placeholder || "선택하세요"} />
+            </SelectTrigger>
+            <SelectContent>
+              {options.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </>
       )}
 
       {type === "textarea" && (

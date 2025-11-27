@@ -79,6 +79,20 @@ export const EntityForm: React.FC<EntityFormProps> = ({
         <div className="grid grid-cols-2 gap-4">
           <div className="mb-4">
             <Label htmlFor="role">역할</Label>
+            {/* 숨겨진 select 요소 (테스트 및 폼 제출용) */}
+            <select
+              name="role"
+              value={userFormData.role || "user"}
+              onChange={(e) => handleFieldChange("role", e.target.value)}
+              className="sr-only"
+              aria-hidden="true"
+              tabIndex={-1}
+            >
+              <option value="user">사용자</option>
+              <option value="moderator">운영자</option>
+              <option value="admin">관리자</option>
+            </select>
+            {/* 시각적 Select (shadcn/ui) */}
             <Select
               value={userFormData.role || "user"}
               onValueChange={(value) => handleFieldChange("role", value)}>
@@ -94,6 +108,20 @@ export const EntityForm: React.FC<EntityFormProps> = ({
           </div>
           <div className="mb-4">
             <Label htmlFor="status">상태</Label>
+            {/* 숨겨진 select 요소 (테스트 및 폼 제출용) */}
+            <select
+              name="status"
+              value={userFormData.status || "active"}
+              onChange={(e) => handleFieldChange("status", e.target.value)}
+              className="sr-only"
+              aria-hidden="true"
+              tabIndex={-1}
+            >
+              <option value="active">활성</option>
+              <option value="inactive">비활성</option>
+              <option value="suspended">정지</option>
+            </select>
+            {/* 시각적 Select (shadcn/ui) */}
             <Select
               value={userFormData.status || "active"}
               onValueChange={(value) => handleFieldChange("status", value)}>
@@ -146,6 +174,20 @@ export const EntityForm: React.FC<EntityFormProps> = ({
           </div>
           <div className="mb-4">
             <Label htmlFor="category">카테고리</Label>
+            {/* 숨겨진 select 요소 (테스트 및 폼 제출용) */}
+            <select
+              name="category"
+              value={postFormData.category || ""}
+              onChange={(e) => handleFieldChange("category", e.target.value)}
+              className="sr-only"
+              aria-hidden="true"
+              tabIndex={-1}
+            >
+              <option value="development">Development</option>
+              <option value="design">Design</option>
+              <option value="accessibility">Accessibility</option>
+            </select>
+            {/* 시각적 Select (shadcn/ui) */}
             <Select
               value={postFormData.category || ""}
               onValueChange={(value) => handleFieldChange("category", value)}>
