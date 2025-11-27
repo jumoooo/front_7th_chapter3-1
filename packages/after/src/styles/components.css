@@ -1,7 +1,5 @@
-* {
-  margin:0;
-  padding:0;
-}
+/* 전역 리셋은 globals.css에서 처리하므로 여기서는 제거 */
+/* TailwindCSS 유틸리티 클래스가 정상 작동하도록 함 */
 
 /* Button styles */
 .btn {

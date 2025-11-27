@@ -1,15 +1,10 @@
-import React from 'react'
-import { Header } from './components/organisms'
-import { ManagementPage } from './pages/ManagementPage'
-import './styles/components.css'
+import React from "react";
+import { ManagementPage } from "./pages/ManagementPage";
+import { DefaultLayout } from "./components/layout/defaultLayout";
+// components.css는 main.tsx에서 이미 로드되므로 중복 제거
 
-export const App: React.FC = () => {
-  return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#f7fafc' }}>
-      <Header />
-      <main>
-        <ManagementPage />
-      </main>
-    </div>
-  );
-};
+export const App: React.FC = () => (
+  <DefaultLayout>
+    <ManagementPage />
+  </DefaultLayout>
+);

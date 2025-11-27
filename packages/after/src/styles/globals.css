@@ -1,78 +1,367 @@
 @import "tailwindcss";
 
 :root {
-  /* 색상 팔레트 - 기본 slate 테마 */
-  --color-background: 0 0% 100%;
-  --color-foreground: 222.2 84% 4.9%;
+  /* ============================================
+     KRDS 스타일 디자인 토큰 시스템
+     참조: https://www.krds.go.kr/html/site/style/style_07_popup.html
+     ============================================ */
+
+  /* ============================================
+     🎨 Primitive Tokens (기본 토큰)
+     ============================================ */
+
+  /* 색상 - Primitive */
+  /* Primary 계열 (Before 패키지 색상에 맞춤: #1976d2) */
+  --krds-color-primary-50: 205 87% 94%; /* #e3f2fd */
+  --krds-color-primary-100: 206 88% 90%;
+  --krds-color-primary-200: 207 90% 77%; /* #90caf9 */
+  --krds-color-primary-300: 208 91% 70%;
+  --krds-color-primary-400: 209 92% 60%;
+  --krds-color-primary-500: 210 79% 46%; /* #1976d2 메인 Primary */
+  --krds-color-primary-600: 210 81% 41%; /* #1565c0 hover */
+  --krds-color-primary-700: 210 85% 35%;
+  --krds-color-primary-800: 210 90% 30%;
+  --krds-color-primary-900: 210 95% 25%;
+
+  /* Success 계열 (Before 패키지 색상에 맞춤: #388e3c) */
+  --krds-color-success-50: 125 39% 94%; /* #e8f5e9 */
+  --krds-color-success-100: 124 40% 90%;
+  --krds-color-success-200: 123 38% 64%; /* #81c784 */
+  --krds-color-success-300: 123 39% 55%;
+  --krds-color-success-400: 123 41% 45%;
+  --krds-color-success-500: 123 43% 39%; /* #388e3c 메인 Success */
+  --krds-color-success-600: 123 45% 32%; /* #2e7d32 hover */
+  --krds-color-success-700: 123 50% 28%;
+  --krds-color-success-800: 123 55% 22%; /* #1b5e20 Alert 텍스트 */
+  --krds-color-success-900: 123 60% 20%;
+
+  /* Warning 계열 (Before 패키지 색상에 맞춤: #f57c00) */
+  --krds-color-warning-50: 37 100% 94%; /* #fff3e0 */
+  --krds-color-warning-100: 36 100% 90%;
+  --krds-color-warning-200: 36 100% 65%; /* #ffb74d */
+  --krds-color-warning-300: 35 100% 60%;
+  --krds-color-warning-400: 33 100% 55%;
+  --krds-color-warning-500: 30 100% 48%; /* #f57c00 메인 Warning */
+  --krds-color-warning-600: 28 100% 42%;
+  --krds-color-warning-700: 25 100% 35%;
+  --krds-color-warning-800: 23 100% 28%;
+  --krds-color-warning-900: 20 100% 22%;
+
+  /* Error/Destructive 계열 (Before 패키지 색상에 맞춤: #d32f2f) */
+  --krds-color-error-50: 351 100% 96%; /* #ffebee */
+  --krds-color-error-100: 351 100% 92%;
+  --krds-color-error-200: 0 69% 67%; /* #e57373 */
+  --krds-color-error-300: 0 68% 65%;
+  --krds-color-error-400: 0 67% 58%;
+  --krds-color-error-500: 0 65% 51%; /* #d32f2f 메인 Error */
+  --krds-color-error-600: 0 70% 45%; /* #c62828 hover */
+  --krds-color-error-700: 0 73% 40%; /* #b71c1c Alert 텍스트 */
+  --krds-color-error-800: 0 66% 35%;
+  --krds-color-error-900: 0 64% 30%;
+
+  /* Neutral/Gray 계열 (Before 패키지 색상에 맞춤) */
+  --krds-color-neutral-50: 0 0% 100%; /* white */
+  --krds-color-neutral-100: 0 0% 96%; /* #f5f5f5 */
+  --krds-color-neutral-200: 0 0% 94%; /* #f0f0f0 */
+  --krds-color-neutral-300: 0 0% 87%; /* #ddd */
+  --krds-color-neutral-400: 0 0% 74%; /* #bdbdbd */
+  --krds-color-neutral-500: 0 0% 40%; /* #666 */
+  --krds-color-neutral-600: 0 0% 26%; /* #424242 */
+  --krds-color-neutral-700: 0 0% 20%; /* #333 */
+  --krds-color-neutral-800: 0 0% 17%;
+  --krds-color-neutral-900: 0 0% 11%;
+
+  /* ============================================
+     🎯 Semantic Tokens (의미 기반 토큰)
+     ============================================ */
+
+  /* 배경색 (Before: #f0f0f0) */
+  --color-background: var(--krds-color-neutral-200);
+  --color-foreground: var(--krds-color-neutral-700);
   
-  --color-card: 0 0% 100%;
-  --color-card-foreground: 222.2 84% 4.9%;
+  /* 카드 (Before: white) */
+  --color-card: var(--krds-color-neutral-50);
+  --color-card-foreground: var(--krds-color-neutral-700);
   
-  --color-popover: 0 0% 100%;
-  --color-popover-foreground: 222.2 84% 4.9%;
+  /* 팝오버 */
+  --color-popover: var(--krds-color-neutral-50);
+  --color-popover-foreground: var(--krds-color-neutral-700);
   
-  --color-primary: 222.2 47.4% 11.2%;
-  --color-primary-foreground: 210 40% 98%;
+  /* Primary (Before: #1976d2) */
+  --color-primary: var(--krds-color-primary-500);
+  --color-primary-foreground: var(--krds-color-neutral-50);
   
-  --color-secondary: 210 40% 96.1%;
-  --color-secondary-foreground: 222.2 47.4% 11.2%;
+  /* Secondary (Before: #f5f5f5) */
+  --color-secondary: var(--krds-color-neutral-100);
+  --color-secondary-foreground: var(--krds-color-neutral-700);
   
-  --color-muted: 210 40% 96.1%;
-  --color-muted-foreground: 215.4 16.3% 46.9%;
+  /* Muted */
+  --color-muted: var(--krds-color-neutral-100);
+  --color-muted-foreground: var(--krds-color-neutral-500);
   
-  --color-accent: 210 40% 96.1%;
-  --color-accent-foreground: 222.2 47.4% 11.2%;
+  /* Accent */
+  --color-accent: var(--krds-color-primary-100);
+  --color-accent-foreground: var(--krds-color-primary-900);
   
-  --color-destructive: 0 84.2% 60.2%;
-  --color-destructive-foreground: 210 40% 98%;
+  /* Destructive (Before: #d32f2f) */
+  --color-destructive: var(--krds-color-error-500);
+  --color-destructive-foreground: var(--krds-color-neutral-50);
   
-  --color-border: 214.3 31.8% 91.4%;
-  --color-input: 214.3 31.8% 91.4%;
-  --color-ring: 222.2 84% 4.9%;
-  
-  --radius: 0.5rem;
+  /* Border & Input (Before: #ddd) */
+  --color-border: var(--krds-color-neutral-300);
+  --color-input: var(--krds-color-neutral-300);
+  --color-ring: var(--krds-color-primary-500);
+
+  /* ============================================
+     📏 Spacing Tokens (간격 토큰)
+     ============================================ */
+  --krds-spacing-xs: 0.25rem;   /* 4px */
+  --krds-spacing-sm: 0.5rem;    /* 8px */
+  --krds-spacing-md: 1rem;      /* 16px */
+  --krds-spacing-lg: 1.5rem;    /* 24px */
+  --krds-spacing-xl: 2rem;      /* 32px */
+  --krds-spacing-2xl: 3rem;     /* 48px */
+  --krds-spacing-3xl: 4rem;     /* 64px */
+
+  /* ============================================
+     🔤 Typography Tokens (타이포그래피 토큰)
+     ============================================ */
+  /* 폰트 크기 */
+  --krds-font-size-xs: 0.75rem;    /* 12px */
+  --krds-font-size-sm: 0.875rem;   /* 14px */
+  --krds-font-size-base: 1rem;     /* 16px */
+  --krds-font-size-lg: 1.125rem;    /* 18px */
+  --krds-font-size-xl: 1.25rem;    /* 20px */
+  --krds-font-size-2xl: 1.5rem;     /* 24px */
+  --krds-font-size-3xl: 1.875rem;   /* 30px */
+  --krds-font-size-4xl: 2.25rem;    /* 36px */
+
+  /* 폰트 두께 */
+  --krds-font-weight-normal: 400;
+  --krds-font-weight-medium: 500;
+  --krds-font-weight-semibold: 600;
+  --krds-font-weight-bold: 700;
+
+  /* 라인 높이 */
+  --krds-line-height-tight: 1.25;
+  --krds-line-height-normal: 1.5;
+  --krds-line-height-relaxed: 1.75;
+
+  /* ============================================
+     🔲 Border Radius Tokens (모서리 둥글기)
+     ============================================ */
+  --krds-radius-none: 0;
+  --krds-radius-sm: 0.25rem;    /* 4px */
+  --krds-radius-md: 0.5rem;     /* 8px */
+  --krds-radius-lg: 0.75rem;    /* 12px */
+  --krds-radius-xl: 1rem;      /* 16px */
+  --krds-radius-full: 9999px;
+
+  /* 기존 호환성 유지 */
+  --radius: var(--krds-radius-md);
+
+  /* ============================================
+     🌑 Shadow Tokens (그림자)
+     ============================================ */
+  --krds-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --krds-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --krds-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --krds-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
-/* 다크 모드 지원 (추후 추가 예정) */
+/* ============================================
+   🌙 Dark Mode Tokens (다크 모드 토큰)
+   ============================================ */
+/* 클래스 기반 라이트 모드 (명시적 라이트 모드) */
+.light {
+  /* 배경색 (라이트 모드) - 직접 값으로 변경하여 중첩 참조 문제 해결 */
+  --color-background: 0 0% 94%; /* #f0f0f0 */
+  --color-foreground: 0 0% 20%; /* #333 */
+  
+  /* 카드 (라이트 모드) */
+  --color-card: var(--krds-color-neutral-50);
+  --color-card-foreground: var(--krds-color-neutral-700);
+  
+  /* 팝오버 (라이트 모드) */
+  --color-popover: var(--krds-color-neutral-50);
+  --color-popover-foreground: var(--krds-color-neutral-700);
+  
+  /* Primary (라이트 모드) */
+  --color-primary: var(--krds-color-primary-500);
+  --color-primary-foreground: var(--krds-color-neutral-50);
+  
+  /* Secondary (라이트 모드) */
+  --color-secondary: var(--krds-color-neutral-100);
+  --color-secondary-foreground: var(--krds-color-neutral-700);
+  
+  /* Muted (라이트 모드) */
+  --color-muted: var(--krds-color-neutral-100);
+  --color-muted-foreground: var(--krds-color-neutral-500);
+  
+  /* Accent (라이트 모드) */
+  --color-accent: var(--krds-color-primary-100);
+  --color-accent-foreground: var(--krds-color-primary-900);
+  
+  /* Destructive (라이트 모드) */
+  --color-destructive: var(--krds-color-error-500);
+  --color-destructive-foreground: var(--krds-color-neutral-50);
+  
+  /* Border & Input (라이트 모드) */
+  --color-border: var(--krds-color-neutral-300);
+  --color-input: var(--krds-color-neutral-300);
+  --color-ring: var(--krds-color-primary-500);
+}
+
+/* 클래스 기반 다크 모드 (사용자 토글 가능) */
+.dark {
+  /* 배경색 (다크 모드) - 직접 값으로 변경하여 중첩 참조 문제 해결 */
+  --color-background: 0 0% 11%; /* 다크 배경 */
+  --color-foreground: 0 0% 100%; /* 흰색 텍스트 */
+  
+  /* 카드 (다크 모드) */
+  --color-card: var(--krds-color-neutral-800);
+  --color-card-foreground: var(--krds-color-neutral-50);
+  
+  /* 팝오버 (다크 모드) */
+  --color-popover: var(--krds-color-neutral-800);
+  --color-popover-foreground: var(--krds-color-neutral-50);
+  
+  /* Primary (다크 모드) */
+  --color-primary: var(--krds-color-primary-400);
+  --color-primary-foreground: var(--krds-color-neutral-900);
+  
+  /* Secondary (다크 모드) */
+  --color-secondary: var(--krds-color-neutral-800);
+  --color-secondary-foreground: var(--krds-color-neutral-50);
+  
+  /* Muted (다크 모드) */
+  --color-muted: var(--krds-color-neutral-800);
+  --color-muted-foreground: var(--krds-color-neutral-400);
+  
+  /* Accent (다크 모드) */
+  --color-accent: var(--krds-color-primary-900);
+  --color-accent-foreground: var(--krds-color-primary-100);
+  
+  /* Destructive (다크 모드) */
+  --color-destructive: var(--krds-color-error-400);
+  --color-destructive-foreground: var(--krds-color-neutral-50);
+  
+  /* Border & Input (다크 모드) */
+  --color-border: var(--krds-color-neutral-700);
+  --color-input: var(--krds-color-neutral-700);
+  --color-ring: var(--krds-color-primary-400);
+}
+
+/* 시스템 설정 기반 다크 모드 (fallback) */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: 222.2 84% 4.9%;
-    --color-foreground: 210 40% 98%;
+  :root:not(.light) {
+    /* 배경색 (다크 모드) - 직접 값으로 변경하여 중첩 참조 문제 해결 */
+    --color-background: 0 0% 11%; /* 다크 배경 */
+    --color-foreground: 0 0% 100%; /* 흰색 텍스트 */
     
-    --color-card: 222.2 84% 4.9%;
-    --color-card-foreground: 210 40% 98%;
+    /* 카드 (다크 모드) */
+    --color-card: var(--krds-color-neutral-800);
+    --color-card-foreground: var(--krds-color-neutral-50);
     
-    --color-popover: 222.2 84% 4.9%;
-    --color-popover-foreground: 210 40% 98%;
+    /* 팝오버 (다크 모드) */
+    --color-popover: var(--krds-color-neutral-800);
+    --color-popover-foreground: var(--krds-color-neutral-50);
     
-    --color-primary: 210 40% 98%;
-    --color-primary-foreground: 222.2 47.4% 11.2%;
+    /* Primary (다크 모드) */
+    --color-primary: var(--krds-color-primary-400);
+    --color-primary-foreground: var(--krds-color-neutral-900);
     
-    --color-secondary: 217.2 32.6% 17.5%;
-    --color-secondary-foreground: 210 40% 98%;
+    /* Secondary (다크 모드) */
+    --color-secondary: var(--krds-color-neutral-800);
+    --color-secondary-foreground: var(--krds-color-neutral-50);
     
-    --color-muted: 217.2 32.6% 17.5%;
-    --color-muted-foreground: 215 20.2% 65.1%;
+    /* Muted (다크 모드) */
+    --color-muted: var(--krds-color-neutral-800);
+    --color-muted-foreground: var(--krds-color-neutral-400);
     
-    --color-accent: 217.2 32.6% 17.5%;
-    --color-accent-foreground: 210 40% 98%;
+    /* Accent (다크 모드) */
+    --color-accent: var(--krds-color-primary-900);
+    --color-accent-foreground: var(--krds-color-primary-100);
     
-    --color-destructive: 0 62.8% 30.6%;
-    --color-destructive-foreground: 210 40% 98%;
+    /* Destructive (다크 모드) */
+    --color-destructive: var(--krds-color-error-400);
+    --color-destructive-foreground: var(--krds-color-neutral-50);
     
-    --color-border: 217.2 32.6% 17.5%;
-    --color-input: 217.2 32.6% 17.5%;
-    --color-ring: 212.7 26.8% 83.9%;
+    /* Border & Input (다크 모드) */
+    --color-border: var(--krds-color-neutral-700);
+    --color-input: var(--krds-color-neutral-700);
+    --color-ring: var(--krds-color-primary-400);
   }
 }
 
-/* 기본 스타일 */
-* {
+/* 기본 스타일 리셋 (Before 패키지와 동일) */
+/* TailwindCSS 유틸리티 클래스가 작동하도록 전역 리셋을 더 구체적으로 설정 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   border-color: hsl(var(--color-border));
 }
 
+/* margin과 padding은 TailwindCSS 유틸리티 클래스가 적용되도록 기본값만 설정 */
+/* 특정 요소에만 리셋 적용 */
+body,
+h1, h2, h3, h4, h5, h6,
+p, ul, ol, li,
+blockquote, pre,
+figure, figcaption,
+dl, dd {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: hsl(var(--color-background)) !important;
+}
+
 body {
-  background-color: hsl(var(--color-background));
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: hsl(var(--color-background)) !important;
   color: hsl(var(--color-foreground));
+  font-family: Arial, sans-serif;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  background-color: hsl(var(--color-background)) !important;
+}
+
+/* main 태그 기본 스타일 리셋 */
+main {
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+  min-height: calc(100vh - 64px); /* Header 높이 제외 */
+}
+
+/* ============================================
+   ♿ 접근성 유틸리티 클래스
+   ============================================ */
+
+/* 스크린 리더 전용 텍스트 (시각적으로는 숨김) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
